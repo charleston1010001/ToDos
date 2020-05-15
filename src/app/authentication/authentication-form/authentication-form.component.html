@@ -1,0 +1,23 @@
+<div class="head-container">
+  <h2>{{isLoginMode ? 'Login' : 'Sign up'}}</h2>
+  <span class="headline" (click)="switchMode()">({{isLoginMode ? 'Sign up' : 'Login'}})</span>
+</div>
+<hr/>
+<form [formGroup]="authenticationForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="full-width">
+    <mat-label>E-Mail</mat-label>
+    <input matInput formControlName="email">
+    <mat-error *ngIf="(email.dirty || email.touched) && email.errors && email.errors['required']">E-Mail is required</mat-error>
+    <mat-error *ngIf="(email.dirty || email.touched) && email.errors && email.errors['email']">Please use valid email address</mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width mt-4">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password">
+    <mat-error *ngIf="(password.dirty || password.touched) && password.errors && password.errors['required']">Password is required</mat-error>
+    <mat-error *ngIf="(password.dirty || password.touched) && password.errors && password.errors['minlength']">Please use at least 6 characters</mat-error>
+  </mat-form-field>
+  <div [style]="{marginTop: '15px'}">
+    <button type="submit" class="btn btn-sm btn-secondary mr-2" [disabled]="authenticationForm.invalid">{{isLoginMode ? 'Login' : 'Sign up'}}</button>
+    <button type="button" class="btn btn-sm btn-warning" (click)="onClear()">Clear</button>
+  </div>
+</form>

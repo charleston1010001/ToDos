@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {TodosListComponent} from "./todos-list.component";
+import {TodosComponent} from "./todos/todos.component";
 import {TodosListRoutingModule} from "./todos-list-routing.module";
 
 
 
 @NgModule({
   declarations: [
-    TodosListComponent
+    TodosComponent
   ],
   imports: [
     CommonModule,

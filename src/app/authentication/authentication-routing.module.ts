@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
-import {TodosComponent} from "./todos/todos.component";
+import {AuthenticationFormComponent} from "./authentication-form/authentication-form.component";
 
 
 const routes: Routes = [
-  { path: '', component: TodosComponent },
+  { path: '', component: AuthenticationFormComponent },
 ];
 
 @NgModule({
@@ -19,4 +19,4 @@ const routes: Routes = [
   ]
 })
 // @ts-ignore
-export class TodosListRoutingModule { }
+export class AuthenticationRoutingModule { }

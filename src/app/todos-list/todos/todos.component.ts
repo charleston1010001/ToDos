@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-todos-list',
-  templateUrl: './todos-list.component.html',
-  styleUrls: ['./todos-list.component.scss']
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.scss']
 })
-export class TodosListComponent implements OnInit {
+export class TodosComponent implements OnInit {
 
   constructor() { }
 

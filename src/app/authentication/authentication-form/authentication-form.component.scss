@@ -1,0 +1,15 @@
+.head-container {
+  display: flex;
+  flex-direction: row;
+
+  > span {
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px 0 0 12px;
+    text-decoration: underline;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
