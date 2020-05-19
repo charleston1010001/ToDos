@@ -1,4 +1,7 @@
 <nav class="navbar navbar-dark bg-primary">
   <h3 class="navbar-text">ToDos</h3>
-  <span class="navbar-text login">{{ isLoggedIn ? 'Login / Sign up' : 'Logout' }}</span>
+  <ng-template [ngIf]="isUserValid">
+    <span class="navbar-text mr-3">Logged in as {{currentUser.email}}</span>
+    <span class="navbar-text login" (click)="logout()">Logout</span>
+  </ng-template>
 </nav>

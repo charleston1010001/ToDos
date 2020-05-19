@@ -6,7 +6,7 @@ export interface AuthResponseData {
   kind: string;
   idToken: string;
   email: string;
-  refreshToken: string;
+  refreshToken?: string;
   expiresIn: string;
   localId: string;
   registered?: boolean;
@@ -21,6 +21,10 @@ export class AuthenticationService {
   }
 
   signUp(email: string, password: string) {
-    return this.http.post<AuthResponseData>(environment.firebaseAuthUrl, {email, password, returnSecureToken: true})
+    return this.http.post<AuthResponseData>(environment.firebaseSignUpUrl, {email, password, returnSecureToken: true})
+  }
+
+  login(email: string, password: string) {
+    return this.http.post<AuthResponseData>(environment.firebaseLoginUrl, {email, password, returnSecureToken: true})
   }
 }

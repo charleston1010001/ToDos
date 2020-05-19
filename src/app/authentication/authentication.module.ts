@@ -4,11 +4,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {StoreModule} from "@ngrx/store";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {EffectsModule} from "@ngrx/effects";
 
 import { AuthenticationFormComponent } from './authentication-form/authentication-form.component';
 import {AuthenticationRoutingModule} from "./authentication-routing.module";
 import * as fromAuth from './store/authentication.reducer';
-import {HttpClientModule} from "@angular/common/http";
+import {AuthenticationEffects} from "./store/authentication.effects";
 
 
 
@@ -16,12 +18,13 @@ import {HttpClientModule} from "@angular/common/http";
   declarations: [AuthenticationFormComponent],
   imports: [
     CommonModule,
-    HttpClientModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
     AuthenticationRoutingModule,
-    StoreModule.forFeature(fromAuth.authenticationFeattureKey, fromAuth.reducer)
+    StoreModule.forFeature(fromAuth.authenticationFeatureKey, fromAuth.reducer),
+    EffectsModule.forFeature([AuthenticationEffects])
   ]
 })
 export class AuthenticationModule { }
