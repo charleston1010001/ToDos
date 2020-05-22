@@ -1,1 +1,4 @@
-<p>todos-list works!</p>
+<h3>Current ToDos</h3>
+<div class="add-todo"></div>
+<hr />
+<app-todo *ngFor="let todo of todosList" [todo]="todo"></app-todo>

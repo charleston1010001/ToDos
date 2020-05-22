@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.storeSub = this.store.select('auth').subscribe((state: fromAuth.State) => {
+    this.storeSub = this.store.select(fromAuth.authenticationFeatureKey).subscribe((state: fromAuth.State) => {
       this.currentUser = state?.user;
     })
   }

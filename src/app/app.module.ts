@@ -11,11 +11,13 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {environment} from "../environments/environment";
-import * as fromAuthentication from './authentication/store/authentication.reducer';
-import {authenticationFeatureKey} from "./authentication/store/authentication.reducer";
+import * as fromAuth from './authentication/store/authentication.reducer';
+import * as fromTodosList from './todos-list/store/todos-list.reducer';
+import {CoreModule} from "./core.module";
 
 export interface AppState {
-  [authenticationFeatureKey]: fromAuthentication.State
+  [fromAuth.authenticationFeatureKey]: fromAuth.State
+  [fromTodosList.todosListFeatureKey]: fromTodosList.State
 }
 
 @NgModule({
@@ -27,6 +29,7 @@ export interface AppState {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    CoreModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),

@@ -1,0 +1,22 @@
+.todo.mat-card {
+  background-color: #ff8a65;
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 40px 1fr 150px;
+  padding: 10px;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.todo-checkbox {
+  margin-right: 20px;
+
+  & > .mat-checkbox-layout {
+    margin-bottom: 0;
+  }
+}
+
+.text {
+  line-height: 24px;
+}

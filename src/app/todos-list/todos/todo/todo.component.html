@@ -1,0 +1,5 @@
+<mat-card class="todo" (click)="navigateToDetails()">
+  <mat-checkbox class="todo-checkbox" (click)="handleCheckboxClick($event)" (change)="handleCheckboxChange($event)"></mat-checkbox>
+  <div class="text">{{todo.headline}}</div>
+  <div class="text">{{dueDate}}</div>
+</mat-card>

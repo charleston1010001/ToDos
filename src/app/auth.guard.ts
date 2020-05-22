@@ -17,7 +17,7 @@ export class AuthGuard implements CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return this.store.select('auth').pipe(
+    /*return this.store.select('auth').pipe(
       take(1),
       map((auth: fromAuth.State) => {
         if (!!auth?.user?.authToken) {
@@ -27,6 +27,7 @@ export class AuthGuard implements CanLoad {
           return false;
         }
       })
-    )
+    )*/
+    return true;
   }
 }

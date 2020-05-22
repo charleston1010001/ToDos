@@ -1,18 +1,26 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {switchMap, map, catchError} from "rxjs/operators";
+import {switchMap, map, catchError, tap} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {EMPTY} from "rxjs";
+import {Store} from "@ngrx/store";
 
 import * as AuthenticationActions from './authentication.actions'
 import {AuthenticationService, AuthResponseData} from "../authentication.service";
 import {UserModel} from "../../models/user.model";
 import {NotificationsService} from "../../notifications.service";
-import {EMPTY} from "rxjs";
+import * as TodosListActions from '../../todos-list/store/todos-list.actions';
 
 @Injectable()
 // @ts-ignore
 export class AuthenticationEffects {
-  constructor(private actions$: Actions, private authService: AuthenticationService, private notifications: NotificationsService, private router: Router) {
+  constructor(
+    private actions$: Actions,
+    private authService: AuthenticationService,
+    private notifications: NotificationsService,
+    private router: Router,
+    private store: Store
+  ) {
   }
 
   handleAuthentication(response: AuthResponseData) {
@@ -68,11 +76,10 @@ export class AuthenticationEffects {
 
   authSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(AuthenticationActions.AUTHENTICATION_SUCCESS),
-    switchMap((action: AuthenticationActions.IAuthActions<AuthenticationActions.AuthSuccessProps>) => {
+    tap((action: AuthenticationActions.IAuthActions<AuthenticationActions.AuthSuccessProps>) => {
       const message = action.isSignUp ? 'Sign up successful. You are now logged in.' : 'Login successful!';
       this.notifications.showNotification(message);
       this.router.navigate(['/list']);
-      return EMPTY;
     }),
   ), {dispatch: false})
 
