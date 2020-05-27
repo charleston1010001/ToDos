@@ -26,6 +26,7 @@ export class RestRequestService {
   }
 
   addTodo(todos: TodoModel[]) {
+    console.log(this.usersUrl);
     return this.usersUrl ? this.http.put(this.usersUrl, todos) : EMPTY;
   }
 

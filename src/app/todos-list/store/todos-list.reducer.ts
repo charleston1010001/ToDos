@@ -17,6 +17,9 @@ export const todosListFeatureKey = 'todos';
 const todosListReducer = createReducer(
   initialState,
   on(todosListActions.fetchTodosSuccess, (state: State, action: FetchTodosProps) => {
+    if (!action.todos || !Array.isArray(action.todos)) {
+      return state;
+    }
     return {
       ...state,
       todos: [...action.todos]

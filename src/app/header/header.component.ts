@@ -6,6 +6,7 @@ import {UserModel} from "../models/user.model";
 import {getValidUser} from "../authentication/store/authentication.selectors";
 import * as AuthenticationActions from '../authentication/store/authentication.actions';
 import * as fromAuth from '../authentication/store/authentication.reducer';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public currentUser: UserModel = null;
   private storeSub = null;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private router: Router) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select(fromAuth.authenticationFeatureKey).subscribe((state: fromAuth.State) => {
@@ -35,5 +36,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.store.dispatch(AuthenticationActions.logout());
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 }

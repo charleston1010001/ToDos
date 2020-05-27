@@ -1,5 +1,5 @@
-<mat-card class="todo" (click)="navigateToDetails()">
-  <mat-checkbox class="todo-checkbox" (click)="handleCheckboxClick($event)" (change)="handleCheckboxChange($event)"></mat-checkbox>
-  <div class="text">{{todo.headline}}</div>
+<mat-card class="todo" (click)="onClick()">
+  <mat-checkbox class="todo-checkbox" [checked]="todo.isDone" (click)="handleCheckboxClick($event)" (change)="handleCheckboxChange($event)"></mat-checkbox>
+  <div class="text" [ngClass]="{'line-through': todo.isDone}">{{todo.headline}}</div>
   <div class="text">{{dueDate}}</div>
 </mat-card>

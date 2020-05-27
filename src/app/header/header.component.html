@@ -2,6 +2,22 @@
   <h3 class="navbar-text">ToDos</h3>
   <ng-template [ngIf]="isUserValid">
     <span class="navbar-text mr-3">Logged in as {{currentUser.email}}</span>
-    <span class="navbar-text login" (click)="logout()">Logout</span>
+    <button class="menu" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="navigateTo('/list')">
+        <mat-icon>playlist_add</mat-icon>
+        <span>ToDos</span>
+      </button>
+      <button mat-menu-item (click)="navigateTo('/list/done')">
+        <mat-icon>playlist_add_check</mat-icon>
+        <span>Finished ToDos</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>remove_circle_outline</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </ng-template>
 </nav>

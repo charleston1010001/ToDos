@@ -1,1 +1,30 @@
-<p>todo-details works!</p>
+<h3>{{todo ? 'Update Details' : 'New ToDo'}}</h3>
+<a class="backLink" [routerLink]="['/list']">
+  <mat-icon>arrow_back</mat-icon>
+  <span class="back">back</span>
+</a>
+<hr />
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" [style]="{width: '75%', paddingRight: '15px'}">
+    <mat-label>Headline</mat-label>
+    <input matInput formControlName="headline" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="(headline.dirty || headline.touched || isFormSubmitted) && headline.errors && headline.errors['required']">Headline is required</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" [style]="{width: '25%'}">
+    <mat-label>Due Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dueDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="(dueDate.dirty || dueDate.touched || isFormSubmitted) && dueDate.errors && dueDate.errors['required']">Due Date is required</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" [style]="{width: '100%'}">
+    <mat-label>Text</mat-label>
+    <textarea matInput formControlName="text" [rows]="8" [errorStateMatcher]="matcher"></textarea>
+    <mat-error *ngIf="(text.dirty || text.touched || isFormSubmitted) && text.errors && text.errors['required']">Text is required</mat-error>
+  </mat-form-field>
+  <div [style]="{marginTop: '15px'}">
+    <button type="submit" mat-raised-button color="primary" class="mr-2">{{!!todo ? 'Update' : 'Save'}}</button>
+    <button type="button" mat-raised-button color="accent" class="mr-2" (click)="onClear()">Clear</button>
+    <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

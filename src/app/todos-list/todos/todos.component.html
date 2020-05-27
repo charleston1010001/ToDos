@@ -1,4 +1,9 @@
 <h3>Current ToDos</h3>
-<div class="add-todo"></div>
+<div class="add-todo" (click)="navigateToNew()"></div>
 <hr />
-<app-todo *ngFor="let todo of todosList" [todo]="todo"></app-todo>
+<app-todo
+  *ngFor="let todo of todosList"
+  [todo]="todo"
+  (todoClick)="todoClick($event)"
+  (onTodoCheckboxChange)="onTodoCheckboxChange($event)"
+></app-todo>

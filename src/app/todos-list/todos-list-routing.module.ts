@@ -4,11 +4,14 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {TodosComponent} from "./todos/todos.component";
 import {TodoDetailsComponent} from "./todo-details/todo-details.component";
+import {FinishedTodosComponent} from "./todos/finished-todos/finished-todos.component";
 
 
 const routes: Routes = [
   { path: '', component: TodosComponent },
-  { path: ':id', component: TodoDetailsComponent },
+  { path: 'done', component: FinishedTodosComponent },
+  { path: 'new', component: TodoDetailsComponent },
+  { path: ':id', component: TodoDetailsComponent }
 ];
 
 @NgModule({

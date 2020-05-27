@@ -2,36 +2,28 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
 
-import {TodoModel} from "../../models/todo.model";
-import {getTodosList} from "../store/todos-list.selectors";
-import {AppState} from "../../app.module";
-import * as TodosListActions from '../store/todos-list.actions';
+import {AppState} from "../../../app.module";
+import {getFinishedTodosList} from "../../store/todos-list.selectors";
+import {TodoModel} from "../../../models/todo.model";
+import * as TodosListActions from "../../store/todos-list.actions";
 
 @Component({
-  selector: 'app-todos-list',
-  templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  selector: 'app-finished-todos',
+  templateUrl: './finished-todos.component.html',
+  styleUrls: ['./finished-todos.component.scss']
 })
-export class TodosComponent implements OnInit, OnDestroy {
+export class FinishedTodosComponent implements OnInit, OnDestroy {
   private storeSub = null;
   public todosList = [];
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.storeSub = this.store.pipe(getTodosList).subscribe((todos: TodoModel[]) => {
+    this.storeSub = this.store.pipe(getFinishedTodosList).subscribe((todos: TodoModel[]) => {
       this.todosList = todos;
     });
 
     this.store.dispatch(TodosListActions.startFetchTodos());
-  }
-
-  navigateToNew() {
-    this.router.navigate(['new'], {relativeTo: this.route});
-  }
-
-  todoClick(event: {todo: TodoModel}) {
-    this.router.navigate([event.todo.id], {relativeTo: this.route});
   }
 
   onTodoCheckboxChange(event: {todo: TodoModel, isChecked: boolean}) {

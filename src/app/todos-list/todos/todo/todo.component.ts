@@ -1,8 +1,7 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 
 import {TodoModel} from "../../../models/todo.model";
-import {MatCheckboxChange, MatCheckboxClickAction} from "@angular/material/checkbox";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-todo',
@@ -12,8 +11,10 @@ import {MatCheckboxChange, MatCheckboxClickAction} from "@angular/material/check
 })
 export class TodoComponent implements OnInit {
   @Input() todo: TodoModel;
+  @Output() todoClick = new EventEmitter<{todo: TodoModel}>()
+  @Output() onTodoCheckboxChange = new EventEmitter<{todo: TodoModel; isChecked: boolean}>()
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -22,8 +23,8 @@ export class TodoComponent implements OnInit {
     return new Date(this.todo.dueDate).toLocaleString();
   }
 
-  navigateToDetails() {
-    this.router.navigate([this.todo.id], {relativeTo: this.route})
+  onClick() {
+    this.todoClick && this.todoClick.emit({todo: this.todo});
   }
 
   handleCheckboxClick(evt: MouseEvent) {
@@ -31,6 +32,6 @@ export class TodoComponent implements OnInit {
   }
 
   handleCheckboxChange(evt: MatCheckboxChange) {
-    console.log(evt.checked);
+    this.onTodoCheckboxChange.emit({todo: this.todo, isChecked: evt.checked});
   }
 }

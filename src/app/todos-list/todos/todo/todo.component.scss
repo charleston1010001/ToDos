@@ -19,4 +19,8 @@
 
 .text {
   line-height: 24px;
+
+  &.line-through {
+    text-decoration: line-through;
+  }
 }

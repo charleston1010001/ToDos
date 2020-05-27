@@ -1,0 +1,3 @@
+<h3>Finished ToDos</h3>
+<hr />
+<app-todo *ngFor="let todo of todosList" [todo]="todo" (onTodoCheckboxChange)="onTodoCheckboxChange($event)"></app-todo>
